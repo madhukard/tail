@@ -15,9 +15,9 @@ import (
 	"sync"
 	"time"
 
-	"github.com/hpcloud/tail/ratelimiter"
-	"github.com/hpcloud/tail/util"
-	"github.com/hpcloud/tail/watch"
+	"github.com/madhukard/tail/ratelimiter"
+	"github.com/madhukard/tail/util"
+	"github.com/madhukard/tail/watch"
 	"gopkg.in/tomb.v1"
 )
 
@@ -107,7 +107,7 @@ func TailFile(filename string, config Config) (*Tail, error) {
 
 	t := &Tail{
 		Filename: filename,
-		Lines:    make(chan *Line),
+		Lines:    make(chan *Line, 10),
 		Config:   config,
 	}
 
